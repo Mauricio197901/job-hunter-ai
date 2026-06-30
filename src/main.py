@@ -1,15 +1,28 @@
-from src.core.config import settings
-from src.core.logger import logger
+from src.jobs.finder import Finder
+from src.storage.database import db
 
 
 def main():
-    logger.info("========================================")
-    logger.info("JOB HUNTER AI")
-    logger.info("========================================")
-    logger.info(f"Ciudades objetivo: {settings.CITIES}")
-    logger.info(f"Salario mínimo: ${settings.MIN_SALARY:,}")
-    logger.info("Sistema iniciado correctamente.")
+
+    jobs = Finder().search()
+
+    print()
+
+    print(f"Vacantes encontradas: {len(jobs)}")
+
+    print()
+
+    for job in jobs:
+
+        print(job)
+
+        saved = db.save_job(job)
+
+        print("Guardada:", saved)
+
+        print()
 
 
 if __name__ == "__main__":
+
     main()
