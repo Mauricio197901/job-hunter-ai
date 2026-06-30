@@ -1,25 +1,14 @@
-from datetime import datetime
-
-from config import DATABASE
-from database import engine
-from logger import logger
+from src.core.config import settings
+from src.core.logger import logger
 
 
 def main():
-
-    logger.info("Proyecto iniciado")
-
-    print("=" * 60)
-    print("JOB HUNTER AI")
-    print("=" * 60)
-
-    print("Inicio:", datetime.now())
-    print("Base de datos:", DATABASE)
-    print("Engine:", engine)
-
-    print("Todo funcionando correctamente.")
-
-    print("=" * 60)
+    logger.info("========================================")
+    logger.info("JOB HUNTER AI")
+    logger.info("========================================")
+    logger.info(f"Ciudades objetivo: {settings.CITIES}")
+    logger.info(f"Salario mínimo: ${settings.MIN_SALARY:,}")
+    logger.info("Sistema iniciado correctamente.")
 
 
 if __name__ == "__main__":
